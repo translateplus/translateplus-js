@@ -32,7 +32,24 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Check if version already published
+        id: check_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view translateplus-js@$VERSION version > /dev/null 2>&1; then
+            echo "Version $VERSION already exists on npm"
+            echo "skip_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version $VERSION is new, will publish"
+            echo "skip_publish=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish to npm
+        if: steps.check_version.outputs.skip_publish == 'false'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skip publish (version exists)
+        if: steps.check_version.outputs.skip_publish == 'true'
+        run: echo "⚠️ Version already published, skipping"
