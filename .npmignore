@@ -1,0 +1,11 @@
+src/
+examples/
+tests/
+*.ts
+!*.d.ts
+tsconfig.json
+tsup.config.ts
+.gitignore
+.npmignore
+README.md
+LICENSE

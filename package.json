@@ -1,0 +1,76 @@
+{
+  "name": "translateplus",
+  "version": "2.0.0",
+  "description": "Official JavaScript/TypeScript client library for TranslatePlus API - Professional translation service for text, HTML, emails, subtitles, and i18n files in 100+ languages",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "translation",
+    "api",
+    "translate",
+    "multilingual",
+    "i18n",
+    "localization",
+    "translateplus",
+    "translation-api"
+  ],
+  "author": {
+    "name": "TranslatePlus",
+    "email": "support@translateplus.io"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/translateplus/translateplus-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/translateplus/translateplus-js/issues"
+  },
+  "homepage": "https://translateplus.io",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browser": {
+    "node-fetch": false
+  },
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/node-fetch": "^2.6.9",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}
