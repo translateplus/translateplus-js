@@ -12,7 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x]
+      fail-fast: false
 
     steps:
       - name: Checkout code
@@ -24,12 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: |
-          if [ -f "package-lock.json" ]; then
-            npm ci
-          else
-            npm install
-          fi
+        run: npm install
 
       - name: Run linter
         run: npm run lint
@@ -37,7 +33,15 @@ jobs:
 
       - name: Build package
         run: npm run build
-        continue-on-error: true
+
+      - name: Verify build
+        run: |
+          if [ -d "dist" ] && [ -f "dist/index.js" ]; then
+            echo "✅ Build successful"
+          else
+            echo "❌ Build failed"
+            exit 1
+          fi
 
       - name: Run tests
         run: npm test
