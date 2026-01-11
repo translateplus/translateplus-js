@@ -22,7 +22,6 @@ import {
   I18nJobListResponse,
 } from './types';
 import {
-  TranslatePlusError,
   TranslatePlusAPIError,
   TranslatePlusAuthenticationError,
   TranslatePlusRateLimitError,
@@ -64,7 +63,6 @@ export class TranslatePlusClient {
   private timeout: number;
   private maxRetries: number;
   private maxConcurrent: number;
-  private semaphore: number;
   private activeRequests: number = 0;
 
   constructor(options: ClientOptions) {
@@ -77,7 +75,6 @@ export class TranslatePlusClient {
     this.timeout = options.timeout || 30000;
     this.maxRetries = options.maxRetries || 3;
     this.maxConcurrent = options.maxConcurrent || 5;
-    this.semaphore = this.maxConcurrent;
   }
 
   /**
