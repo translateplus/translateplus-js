@@ -1,6 +1,6 @@
 {
   "name": "translateplus-js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Official JavaScript/TypeScript client library for TranslatePlus API - Professional translation service for text, HTML, emails, subtitles, and i18n files in 100+ languages",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
