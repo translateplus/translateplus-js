@@ -99,7 +99,7 @@ npm login
 ## Usage Example
 
 ```typescript
-import { TranslatePlusClient } from 'translateplus';
+import { TranslatePlusClient } from 'translateplus-js';
 
 const client = new TranslatePlusClient({
   apiKey: 'your-api-key'

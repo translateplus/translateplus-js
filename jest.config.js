@@ -10,4 +10,17 @@ module.exports = {
     'src/**/*.ts',
     '!src/**/*.d.ts',
   ],
+  moduleNameMapper: {
+    '^form-data$': '<rootDir>/node_modules/form-data',
+    '^node-fetch$': '<rootDir>/node_modules/node-fetch',
+  },
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(form-data|node-fetch)/)',
+  ],
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
 };

@@ -2,7 +2,6 @@
  * Tests for TranslatePlusClient.
  */
 
-import { TranslatePlusClient } from '../src/client';
 import {
   TranslatePlusAuthenticationError,
   TranslatePlusRateLimitError,
@@ -10,8 +9,11 @@ import {
   TranslatePlusValidationError,
 } from '../src/exceptions';
 
-// Mock fetch
-global.fetch = jest.fn();
+// Import client - mocks are set up in setup.ts
+import { TranslatePlusClient } from '../src/client';
+import fetch from 'node-fetch';
+
+const mockedFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 describe('TranslatePlusClient', () => {
   let client: TranslatePlusClient;
@@ -20,7 +22,7 @@ describe('TranslatePlusClient', () => {
     client = new TranslatePlusClient({
       apiKey: 'test-api-key',
     });
-    (global.fetch as jest.Mock).mockClear();
+    mockedFetch.mockClear();
   });
 
   describe('Initialization', () => {
@@ -57,10 +59,13 @@ describe('TranslatePlusClient', () => {
         },
       };
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      mockedFetch.mockResolvedValueOnce({
         status: 200,
         json: async () => mockResponse,
-      });
+        headers: {
+          get: () => null,
+        },
+      } as any);
 
       const result = await client.translate({
         text: 'Hello',
@@ -72,10 +77,13 @@ describe('TranslatePlusClient', () => {
     });
 
     it('should handle authentication error', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      mockedFetch.mockResolvedValueOnce({
         status: 403,
         json: async () => ({ detail: 'Invalid API key' }),
-      });
+        headers: {
+          get: () => null,
+        },
+      } as any);
 
       await expect(
         client.translate({ text: 'Hello', source: 'en', target: 'fr' })
@@ -83,13 +91,13 @@ describe('TranslatePlusClient', () => {
     });
 
     it('should handle rate limit error', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      mockedFetch.mockResolvedValueOnce({
         status: 429,
         headers: {
           get: (key: string) => (key === 'Retry-After' ? '60' : null),
         },
         json: async () => ({ detail: 'Rate limit exceeded' }),
-      });
+      } as any);
 
       await expect(
         client.translate({ text: 'Hello', source: 'en', target: 'fr' })
@@ -97,10 +105,13 @@ describe('TranslatePlusClient', () => {
     });
 
     it('should handle insufficient credits error', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      mockedFetch.mockResolvedValueOnce({
         status: 402,
         json: async () => ({ detail: 'Insufficient credits' }),
-      });
+        headers: {
+          get: () => null,
+        },
+      } as any);
 
       await expect(
         client.translate({ text: 'Hello', source: 'en', target: 'fr' })

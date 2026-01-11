@@ -2,7 +2,7 @@
  * Basic usage examples for TranslatePlus JavaScript client.
  */
 
-import { TranslatePlusClient } from '../src';
+import { TranslatePlusClient } from 'translateplus-js';
 
 // Initialize client
 const client = new TranslatePlusClient({

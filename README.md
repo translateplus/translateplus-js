@@ -1,6 +1,6 @@
 # TranslatePlus JavaScript/TypeScript Client
 
-[![npm version](https://badge.fury.io/js/translateplus.svg)](https://badge.fury.io/js/translateplus)
+[![npm version](https://badge.fury.io/js/translateplus-js.svg)](https://badge.fury.io/js/translateplus-js)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1+-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-14+-green.svg)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -20,19 +20,19 @@ Official JavaScript/TypeScript client library for [TranslatePlus API](https://tr
 ## Installation
 
 ```bash
-npm install translateplus
+npm install translateplus-js
 ```
 
 or with yarn:
 
 ```bash
-yarn add translateplus
+yarn add translateplus-js
 ```
 
 or with pnpm:
 
 ```bash
-pnpm add translateplus
+pnpm add translateplus-js
 ```
 
 ## Quick Start
@@ -40,7 +40,7 @@ pnpm add translateplus
 ### TypeScript/ES Modules
 
 ```typescript
-import { TranslatePlusClient } from 'translateplus';
+import { TranslatePlusClient } from 'translateplus-js';
 
 // Initialize client
 const client = new TranslatePlusClient({
@@ -79,7 +79,7 @@ console.log(htmlResult.html);
 ### CommonJS
 
 ```javascript
-const { TranslatePlusClient } = require('translateplus');
+const { TranslatePlusClient } = require('translateplus-js');
 
 const client = new TranslatePlusClient({
   apiKey: 'your-api-key'
@@ -314,7 +314,7 @@ import {
   TranslatePlusRateLimitError,
   TranslatePlusInsufficientCreditsError,
   TranslatePlusValidationError,
-} from 'translateplus';
+} from 'translateplus-js';
 
 const client = new TranslatePlusClient({ apiKey: 'your-api-key' });
 
