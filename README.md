@@ -393,6 +393,15 @@ for (const lang of languages) {
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
+## Related Libraries
+
+TranslatePlus provides official client libraries for multiple programming languages:
+
+- **Python**: [translateplus-python](https://pypi.org/project/translateplus-python/) - Official PyPI package
+- **PHP**: [translateplus-php](https://packagist.org/packages/translateplus/translateplus-php) - Official Composer package
+
+All libraries provide the same comprehensive API support and features.
+
 ## Support
 
 - **Documentation**: [https://docs.translateplus.io](https://docs.translateplus.io)
